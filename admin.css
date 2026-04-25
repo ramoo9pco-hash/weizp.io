@@ -1,0 +1,836 @@
+
+/* ================= GLOBAL RESET ================= */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background: linear-gradient(135deg, #0f1430 0%, #1a1f3a 100%);
+  min-height: 100vh;
+  padding-bottom: 30px;
+  color: #ffffff;
+}
+
+/* ================= CONTAINER ================= */
+.container {
+  max-width: 500px;
+  margin: 0 auto;
+  padding: 20px 15px;
+}
+
+/* ================= HEADER ================= */
+.header {
+  text-align: center;
+  margin-bottom: 25px;
+  padding: 25px 20px;
+  background: linear-gradient(135deg, #1f2b5a, #131a3a);
+  border-radius: 15px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+}
+
+.header h1 {
+  font-size: 24px;
+  color: #ffffff;
+  font-weight: 700;
+  margin-bottom: 5px;
+}
+
+.header p {
+  color: #94a3b8;
+  font-size: 14px;
+}
+
+/* ================= ADMIN KEY CARD ================= */
+.admin-key-card {
+  border: 1px solid rgba(52, 152, 219, 0.3);
+}
+
+.save-key-btn {
+  width: 100%;
+  padding: 14px;
+  background: linear-gradient(135deg, #3498db, #2980b9);
+  color: white;
+  border: none;
+  border-radius: 12px;
+  font-size: 15px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgba(52, 152, 219, 0.3);
+}
+
+.save-key-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(52, 152, 219, 0.4);
+}
+
+.save-key-btn:active {
+  transform: translateY(0);
+}
+
+/* ================= TAB NAVIGATION ================= */
+.tab-nav {
+  display: flex;
+  gap: 4px;
+  margin-bottom: 20px;
+  background: linear-gradient(135deg, #1f2b5a, #131a3a);
+  padding: 8px;
+  border-radius: 15px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+  flex-wrap: wrap;
+}
+
+.tab-btn {
+  flex: 1;
+  padding: 10px 6px;
+  background: transparent;
+  color: #94a3b8;
+  border: none;
+  border-radius: 10px;
+  font-size: 11px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  min-width: 70px;
+}
+
+.tab-btn.active {
+  background: linear-gradient(135deg, #3498db, #2980b9);
+  color: white;
+  box-shadow: 0 4px 10px rgba(52, 152, 219, 0.3);
+}
+
+.tab-btn:hover:not(.active) {
+  background: rgba(255, 255, 255, 0.05);
+  color: #ffffff;
+}
+
+/* ================= TAB CONTENT ================= */
+.tab-content {
+  display: none;
+}
+
+.tab-content.active {
+  display: block;
+}
+
+/* ================= ADMIN CARD ================= */
+.admin-card {
+  background: linear-gradient(135deg, #1f2b5a, #131a3a);
+  padding: 25px 20px;
+  border-radius: 15px;
+  margin-bottom: 20px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+}
+
+.admin-card h2 {
+  font-size: 18px;
+  color: #ffffff;
+  font-weight: 700;
+  margin-bottom: 20px;
+}
+
+.card-subtitle {
+  color: #94a3b8;
+  font-size: 13px;
+  margin-top: -15px;
+  margin-bottom: 18px;
+}
+
+/* ================= INPUT GROUP ================= */
+.input-group {
+  margin-bottom: 15px;
+}
+
+.input-group label {
+  display: block;
+  color: #94a3b8;
+  font-size: 13px;
+  font-weight: 600;
+  margin-bottom: 6px;
+}
+
+.input-group input,
+.input-group textarea {
+  width: 100%;
+  padding: 14px 15px;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 12px;
+  color: #ffffff;
+  font-size: 15px;
+  font-weight: 500;
+  outline: none;
+  transition: all 0.3s ease;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.input-group textarea {
+  resize: vertical;
+  min-height: 80px;
+}
+
+.input-group input:focus,
+.input-group textarea:focus {
+  border-color: #3498db;
+  box-shadow: 0 0 10px rgba(52, 152, 219, 0.2);
+}
+
+.input-group input::placeholder,
+.input-group textarea::placeholder {
+  color: #64748b;
+}
+
+/* ================= MESSAGE ================= */
+.message {
+  font-size: 13px;
+  margin-bottom: 12px;
+  min-height: 20px;
+  font-weight: 500;
+}
+
+/* ================= BUTTONS ================= */
+.update-btn {
+  width: 100%;
+  padding: 14px;
+  background: linear-gradient(135deg, #2ecc71, #27ae60);
+  color: white;
+  border: none;
+  border-radius: 12px;
+  font-size: 15px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgba(46, 204, 113, 0.3);
+}
+
+.update-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(46, 204, 113, 0.4);
+}
+
+.update-btn:active {
+  transform: translateY(0);
+}
+
+.view-btn {
+  width: 100%;
+  padding: 14px;
+  background: linear-gradient(135deg, #3498db, #2980b9);
+  color: white;
+  border: none;
+  border-radius: 12px;
+  font-size: 15px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  margin-bottom: 15px;
+  box-shadow: 0 4px 15px rgba(52, 152, 219, 0.3);
+}
+
+.view-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(52, 152, 219, 0.4);
+}
+
+.view-btn:active {
+  transform: translateY(0);
+}
+
+.create-reward-btn {
+  width: 100%;
+  padding: 14px;
+  background: linear-gradient(135deg, #f59e0b, #f97316);
+  color: white;
+  border: none;
+  border-radius: 12px;
+  font-size: 15px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgba(245, 158, 11, 0.3);
+}
+
+.create-reward-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(245, 158, 11, 0.4);
+}
+
+.create-reward-btn:active {
+  transform: translateY(0);
+}
+
+/* ================= WALLET STATS ================= */
+.wallet-stats {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 10px;
+}
+
+.stat-box {
+  flex: 1;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  border-radius: 12px;
+  padding: 15px 10px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.stat-number {
+  font-size: 24px;
+  font-weight: 700;
+  color: #3498db;
+}
+
+.stat-number.assigned {
+  color: #f59e0b;
+}
+
+.stat-number.available {
+  color: #2ecc71;
+}
+
+.stat-label {
+  font-size: 11px;
+  color: #94a3b8;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+/* ================= USER CARD ================= */
+.users-list,
+.rewards-list,
+.approvals-list,
+.wallets-list,
+.withdrawals-list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.user-card {
+  background: rgba(255, 255, 255, 0.03);
+  padding: 15px;
+  border-radius: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  transition: all 0.3s ease;
+}
+
+.user-card:hover {
+  border-color: rgba(52, 152, 219, 0.3);
+  background: rgba(255, 255, 255, 0.05);
+}
+
+.user-card h3 {
+  font-size: 16px;
+  color: #ffffff;
+  font-weight: 700;
+  margin-bottom: 8px;
+}
+
+.user-card p {
+  font-size: 13px;
+  color: #94a3b8;
+  margin-bottom: 4px;
+}
+
+.balance-highlight {
+  color: #2ecc71 !important;
+  font-weight: 700;
+}
+
+.profit-highlight {
+  color: #f59e0b !important;
+  font-weight: 700;
+}
+
+/* ================= WALLET CARD ================= */
+.wallet-card {
+  background: rgba(255, 255, 255, 0.03);
+  padding: 15px;
+  border-radius: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  transition: all 0.3s ease;
+}
+
+.wallet-card:hover {
+  border-color: rgba(52, 152, 219, 0.3);
+  background: rgba(255, 255, 255, 0.05);
+}
+
+.wallet-card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 8px;
+}
+
+.wallet-card-header h3 {
+  font-size: 14px;
+  color: #ffffff;
+  font-weight: 700;
+}
+
+.wallet-card-status {
+  font-size: 11px;
+  font-weight: 600;
+  padding: 4px 10px;
+  border-radius: 20px;
+}
+
+.wallet-card-status.assigned {
+  background: rgba(245, 158, 11, 0.15);
+  color: #f59e0b;
+}
+
+.wallet-card-status.available {
+  background: rgba(46, 204, 113, 0.15);
+  color: #2ecc71;
+}
+
+.wallet-address-text {
+  color: #3498db;
+  font-size: 11px;
+  font-family: 'Courier New', monospace;
+  word-break: break-all;
+  margin-bottom: 5px;
+}
+
+.wallet-card p {
+  font-size: 12px;
+  color: #94a3b8;
+  margin-bottom: 3px;
+}
+
+/* ================= REWARD CARD ================= */
+.reward-card {
+  background: rgba(255, 255, 255, 0.03);
+  padding: 18px;
+  border-radius: 12px;
+  border: 1px solid rgba(245, 158, 11, 0.15);
+  transition: all 0.3s ease;
+}
+
+.reward-card:hover {
+  border-color: rgba(245, 158, 11, 0.3);
+  background: rgba(255, 255, 255, 0.05);
+}
+
+.reward-card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 12px;
+}
+
+.reward-card-header h3 {
+  font-size: 16px;
+  color: #ffffff;
+  font-weight: 700;
+}
+
+.reward-card-status {
+  font-size: 11px;
+  font-weight: 600;
+  padding: 4px 10px;
+  border-radius: 20px;
+}
+
+.reward-card-status.confirmed {
+  background: rgba(46, 204, 113, 0.15);
+  color: #2ecc71;
+}
+
+.reward-card-status.not-confirmed {
+  background: rgba(239, 68, 68, 0.15);
+  color: #ef4444;
+}
+
+.reward-card-status.pending {
+  background: rgba(59, 130, 246, 0.15);
+  color: #3b82f6;
+}
+
+.reward-card-status.completed {
+  background: rgba(46, 204, 113, 0.15);
+  color: #2ecc71;
+}
+
+.reward-card-details {
+  margin-bottom: 12px;
+}
+
+.reward-card-details p {
+  font-size: 13px;
+  color: #94a3b8;
+  margin-bottom: 5px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.reward-card-details p span {
+  color: #ffffff;
+  font-weight: 600;
+}
+
+.reward-card-message {
+  font-size: 12px;
+  color: #94a3b8;
+  padding: 8px 10px;
+  background: rgba(255, 255, 255, 0.03);
+  border-radius: 8px;
+  border-left: 3px solid #f59e0b;
+  margin-bottom: 12px;
+}
+
+.reward-card-progress {
+  margin-bottom: 12px;
+}
+
+.reward-progress-bar-container {
+  width: 100%;
+  height: 8px;
+  background: rgba(255, 255, 255, 0.08);
+  border-radius: 8px;
+  overflow: hidden;
+  margin-bottom: 4px;
+}
+
+.reward-progress-bar {
+  height: 100%;
+  background: linear-gradient(90deg, #f59e0b, #f97316);
+  border-radius: 8px;
+  transition: width 0.5s ease;
+}
+
+.reward-progress-text {
+  text-align: right;
+  color: #64748b;
+  font-size: 11px;
+  font-weight: 600;
+}
+
+.reward-card-actions {
+  display: flex;
+  gap: 8px;
+}
+
+.edit-btn {
+  flex: 1;
+  padding: 10px;
+  background: linear-gradient(135deg, #3498db, #2980b9);
+  color: white;
+  border: none;
+  border-radius: 10px;
+  font-size: 13px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.edit-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 10px rgba(52, 152, 219, 0.3);
+}
+
+.delete-btn {
+  flex: 1;
+  padding: 10px;
+  background: linear-gradient(135deg, #ef4444, #dc2626);
+  color: white;
+  border: none;
+  border-radius: 10px;
+  font-size: 13px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.delete-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 10px rgba(239, 68, 68, 0.3);
+}
+
+.edit-btn:active,
+.delete-btn:active {
+  transform: translateY(0);
+}
+
+/* ================= WITHDRAWAL CARD ================= */
+.withdrawal-card {
+  background: rgba(255, 255, 255, 0.03);
+  padding: 18px;
+  border-radius: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  transition: all 0.3s ease;
+}
+
+.withdrawal-card:hover {
+  border-color: rgba(52, 152, 219, 0.3);
+  background: rgba(255, 255, 255, 0.05);
+}
+
+.withdrawal-card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 12px;
+}
+
+.withdrawal-card-header h3 {
+  font-size: 16px;
+  color: #ffffff;
+  font-weight: 700;
+}
+
+.withdrawal-card-status {
+  font-size: 11px;
+  font-weight: 600;
+  padding: 4px 10px;
+  border-radius: 20px;
+}
+
+.withdrawal-card-status.pending {
+  background: rgba(245, 158, 11, 0.15);
+  color: #f59e0b;
+}
+
+.withdrawal-card-status.approved {
+  background: rgba(46, 204, 113, 0.15);
+  color: #2ecc71;
+}
+
+.withdrawal-card-status.rejected {
+  background: rgba(239, 68, 68, 0.15);
+  color: #ef4444;
+}
+
+.withdrawal-card-details p {
+  font-size: 13px;
+  color: #94a3b8;
+  margin-bottom: 5px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.withdrawal-card-details p span {
+  color: #ffffff;
+  font-weight: 600;
+}
+
+.withdrawal-wallet-address {
+  color: #3498db !important;
+  font-size: 11px !important;
+  font-family: 'Courier New', monospace;
+  word-break: break-all;
+}
+
+.withdrawal-card-actions {
+  display: flex;
+  gap: 8px;
+  margin-top: 12px;
+}
+
+.approve-btn {
+  flex: 1;
+  padding: 12px;
+  background: linear-gradient(135deg, #2ecc71, #27ae60);
+  color: white;
+  border: none;
+  border-radius: 10px;
+  font-size: 14px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 10px rgba(46, 204, 113, 0.3);
+}
+
+.approve-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 15px rgba(46, 204, 113, 0.4);
+}
+
+.reject-btn {
+  flex: 1;
+  padding: 12px;
+  background: linear-gradient(135deg, #ef4444, #dc2626);
+  color: white;
+  border: none;
+  border-radius: 10px;
+  font-size: 14px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 10px rgba(239, 68, 68, 0.3);
+}
+
+.reject-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 15px rgba(239, 68, 68, 0.4);
+}
+
+.approve-btn:active,
+.reject-btn:active {
+  transform: translateY(0);
+}
+
+/* ================= APPROVAL CARD ================= */
+.approval-card {
+  background: rgba(255, 255, 255, 0.03);
+  padding: 18px;
+  border-radius: 12px;
+  border: 1px solid rgba(59, 130, 246, 0.15);
+  transition: all 0.3s ease;
+}
+
+.approval-card:hover {
+  border-color: rgba(59, 130, 246, 0.3);
+  background: rgba(255, 255, 255, 0.05);
+}
+
+.approval-card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 12px;
+}
+
+.approval-card-header h3 {
+  font-size: 16px;
+  color: #ffffff;
+  font-weight: 700;
+}
+
+.approval-card-details p {
+  font-size: 13px;
+  color: #94a3b8;
+  margin-bottom: 5px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.approval-card-details p span {
+  color: #ffffff;
+  font-weight: 600;
+}
+
+.approval-card-actions {
+  display: flex;
+  gap: 8px;
+  margin-top: 12px;
+}
+
+/* ================= MODAL ================= */
+.modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.7);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+  padding: 20px;
+  backdrop-filter: blur(5px);
+}
+
+.modal-content {
+  background: linear-gradient(135deg, #1f2b5a, #131a3a);
+  padding: 25px 20px;
+  border-radius: 15px;
+  width: 100%;
+  max-width: 450px;
+  max-height: 90vh;
+  overflow-y: auto;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.modal-header h2 {
+  font-size: 18px;
+  color: #ffffff;
+  font-weight: 700;
+}
+
+.modal-close {
+  background: rgba(239, 68, 68, 0.15);
+  color: #ef4444;
+  border: none;
+  width: 35px;
+  height: 35px;
+  border-radius: 50%;
+  font-size: 18px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.modal-close:hover {
+  background: rgba(239, 68, 68, 0.3);
+  transform: rotate(90deg);
+}
+
+/* ================= NO DATA MESSAGE ================= */
+.no-data {
+  color: #64748b;
+  text-align: center;
+  padding: 25px;
+  font-size: 14px;
+}
+
+/* ================= RESPONSIVE ================= */
+@media (max-width: 480px) {
+  .tab-nav {
+    flex-wrap: wrap;
+  }
+
+  .tab-btn {
+    font-size: 10px;
+    padding: 8px 4px;
+    min-width: 60px;
+  }
+
+  .header h1 {
+    font-size: 20px;
+  }
+
+  .admin-card {
+    padding: 20px 15px;
+  }
+
+  .reward-card-actions,
+  .approval-card-actions,
+  .withdrawal-card-actions {
+    flex-direction: column;
+    gap: 6px;
+  }
+
+  .wallet-stats {
+    flex-direction: column;
+  }
+
+  .stat-box {
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+  }
+}

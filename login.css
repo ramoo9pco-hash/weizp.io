@@ -1,0 +1,253 @@
+/* ================= GLOBAL RESET ================= */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background: linear-gradient(135deg, #0f1430 0%, #1a1f3a 100%);
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+}
+
+/* ================= CONTAINER ================= */
+.container {
+  width: 100%;
+  max-width: 420px;
+}
+
+/* ================= LOGIN CARD ================= */
+.login-card {
+  background: linear-gradient(135deg, #1f2b5a, #131a3a);
+  padding: 40px 30px;
+  border-radius: 25px;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
+}
+
+/* ================= HEADER ================= */
+.header {
+  text-align: center;
+  margin-bottom: 35px;
+}
+
+.header h1 {
+  font-size: 28px;
+  color: #ffffff;
+  margin-bottom: 8px;
+  font-weight: 700;
+}
+
+.header p {
+  font-size: 14px;
+  color: #94a3b8;
+  font-weight: 400;
+}
+
+/* ================= INPUT GROUPS ================= */
+.input-group {
+  margin-bottom: 20px;
+}
+
+.input-group label {
+  display: block;
+  color: #e2e8f0;
+  font-size: 14px;
+  margin-bottom: 8px;
+  font-weight: 500;
+}
+
+.input-group input {
+  width: 100%;
+  padding: 14px 16px;
+  border: 2px solid #2d3748;
+  border-radius: 12px;
+  background: #1a202c;
+  color: #ffffff;
+  font-size: 15px;
+  transition: all 0.3s ease;
+}
+
+.input-group input:focus {
+  outline: none;
+  border-color: #3498db;
+  background: #252d3d;
+}
+
+.input-group input::placeholder {
+  color: #64748b;
+}
+
+/* ================= ERROR MESSAGE ================= */
+.error-msg {
+  color: #ef4444;
+  font-size: 13px;
+  text-align: center;
+  margin-bottom: 15px;
+  min-height: 18px;
+  font-weight: 500;
+}
+
+/* ================= LOGIN BUTTON ================= */
+.login-btn {
+  width: 100%;
+  padding: 15px;
+  background: linear-gradient(135deg, #3498db, #2980b9);
+  color: #ffffff;
+  border: none;
+  border-radius: 12px;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgba(52, 152, 219, 0.3);
+}
+
+.login-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(52, 152, 219, 0.4);
+}
+
+.login-btn:active {
+  transform: translateY(0);
+}
+
+/* ================= REGISTER LINK ================= */
+.register-link {
+  text-align: center;
+  margin-top: 25px;
+  padding-top: 20px;
+  border-top: 1px solid #2d3748;
+}
+
+.register-link p {
+  color: #94a3b8;
+  font-size: 14px;
+}
+
+.register-link a {
+  color: #3498db;
+  text-decoration: none;
+  font-weight: 600;
+  transition: color 0.3s ease;
+}
+
+.register-link a:hover {
+  color: #5dade2;
+  text-decoration: underline;
+}
+
+/* ================= TELEGRAM CUSTOMER SERVICE BUTTON ================= */
+#tg-btn {
+  position: fixed;
+  bottom: 28px;
+  right: 28px;
+  width: 58px;
+  height: 58px;
+  border-radius: 50%;
+  background: #29A8E0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 20px rgba(41, 168, 224, 0.45);
+  z-index: 9999;
+  text-decoration: none;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+#tg-btn::before {
+  content: '';
+  position: absolute;
+  width: 58px;
+  height: 58px;
+  border-radius: 50%;
+  background: rgba(41, 168, 224, 0.35);
+  animation: tg-pulse 2s ease-out infinite;
+  z-index: -1;
+}
+
+#tg-btn:hover {
+  transform: scale(1.1);
+  box-shadow: 0 6px 25px rgba(41, 168, 224, 0.6);
+}
+
+#tg-btn img {
+  width: 32px;
+  height: 32px;
+}
+
+/* Tooltip */
+.tg-tooltip {
+  position: absolute;
+  bottom: 68px;
+  right: 0;
+  background: #ffffff;
+  color: #1a202c;
+  font-size: 13px;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-weight: 500;
+  padding: 8px 14px;
+  border-radius: 20px;
+  white-space: nowrap;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+  opacity: 0;
+  transform: translateY(8px);
+  transition: opacity 0.25s ease, transform 0.25s ease;
+  pointer-events: none;
+}
+
+/* Tooltip arrow */
+.tg-tooltip::after {
+  content: '';
+  position: absolute;
+  bottom: -5px;
+  right: 22px;
+  width: 9px;
+  height: 9px;
+  background: #ffffff;
+  transform: rotate(45deg);
+  box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.08);
+}
+
+#tg-btn:hover .tg-tooltip {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Pulse animation */
+@keyframes tg-pulse {
+  0%   { transform: scale(1);   opacity: 0.6; }
+  100% { transform: scale(1.7); opacity: 0;   }
+}
+
+/* ================= RESPONSIVE ================= */
+@media (max-width: 480px) {
+  .login-card {
+    padding: 35px 25px;
+  }
+
+  .header h1 {
+    font-size: 24px;
+  }
+
+  #tg-btn {
+    bottom: 20px;
+    right: 20px;
+    width: 52px;
+    height: 52px;
+  }
+
+  #tg-btn img {
+    width: 28px;
+    height: 28px;
+  }
+
+  .tg-tooltip {
+    font-size: 12px;
+    padding: 7px 12px;
+  }
+}

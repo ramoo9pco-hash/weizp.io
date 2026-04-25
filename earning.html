@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Earnings - Investment App</title>
+  <link rel="stylesheet" href="earning.css">
+</head>
+<body>
+
+  <!-- Top Header -->
+  <header class="top-header">
+    <div class="profile-section">
+      <div class="profile-pic">
+        <img src="https://ui-avatars.com/api/?name=User&background=3498db&color=fff&size=100" alt="Profile" id="profileImg">
+      </div>
+      <span id="username" class="username-text">User</span>
+    </div>
+    <button class="logout-btn" onclick="logout()">Logout</button>
+  </header>
+
+  <!-- Main Container -->
+  <div class="container">
+
+    <!-- Balance & Profit Cards -->
+    <div class="stats-row">
+      <div class="stat-card">
+        <div class="stat-icon">💰</div>
+        <div class="stat-info">
+          <p class="stat-label">Total Balance</p>
+          <h2 class="stat-value">$<span id="totalBalance">0.00</span></h2>
+          <p class="stat-sub">USDT</p>
+        </div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-icon">🎁</div>
+        <div class="stat-info">
+          <p class="stat-label">Total Profit</p>
+          <h2 class="stat-value profit-color">$<span id="totalProfit">0.00</span></h2>
+          <p class="stat-sub">USDT</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Reward Notification (shown before confirm) -->
+    <div id="rewardNotification" class="reward-notification" style="display: none;">
+      <div class="notification-icon">🔔</div>
+      <div class="notification-content">
+        <h3>New Reward Available!</h3>
+        <p id="rewardNotifMessage">You have a new reward!</p>
+      </div>
+      <button class="notification-btn" onclick="confirmReward()">Confirm</button>
+    </div>
+
+    <!-- Reward Box (shown after confirm) -->
+    <div id="rewardBox" class="reward-box" style="display: none;">
+
+      <!-- State: In Progress -->
+      <div id="rewardInProgress" style="display: none;">
+        <div class="reward-header">
+          <h2>🎁 Reward</h2>
+          <span id="rewardStatus" class="reward-status">In Progress ⏳</span>
+        </div>
+        <p id="rewardMessage" class="reward-message"></p>
+
+        <div class="reward-details">
+          <!-- NEW ORDER: Standard → Reward → Completed → Requirement → Withdrawable → Time -->
+          <div class="reward-detail-row">
+            <span>💰 Standard Amount</span>
+            <span id="standardAmount" class="detail-value">$0.00</span>
+          </div>
+          <div class="reward-detail-row">
+            <span>🎁 Reward Amount</span>
+            <span id="rewardAmount" class="detail-value reward-highlight">$0.00</span>
+          </div>
+          <div class="reward-detail-row">
+            <span>✅ Completed</span>
+            <span id="completedAmount" class="detail-value">$0.00</span>
+          </div>
+          <div class="reward-detail-row">
+            <span>📋 Requirement</span>
+            <span id="requirementAmount" class="detail-value">$0.00</span>
+          </div>
+          <div class="reward-detail-row">
+            <span>💸 Withdrawable</span>
+            <span id="withdrawableAmount" class="detail-value profit-color">$0.00</span>
+          </div>
+          <div class="reward-detail-row">
+            <span>⏰ Time Left</span>
+            <span id="rewardTimeLeft" class="detail-value">--</span>
+          </div>
+        </div>
+
+        <div class="progress-section">
+          <div class="progress-bar-container">
+            <div id="rewardProgressBar" class="progress-bar" style="width: 0%"></div>
+          </div>
+          <p id="rewardProgressText" class="progress-text">0%</p>
+        </div>
+
+        <button id="claimRewardBtn" class="claim-reward-btn" onclick="claimReward()" style="display: none;">
+          🎁 Claim Reward
+        </button>
+      </div>
+
+      <!-- State: Waiting Approval -->
+      <div id="rewardWaiting" style="display: none;">
+        <div class="reward-header">
+          <h2>🎁 Reward Claimed</h2>
+          <span class="reward-status waiting">Waiting Approval ⏳</span>
+        </div>
+        <p class="reward-waiting-text">Your reward claim has been sent to admin for approval. Please wait.</p>
+        <div class="reward-detail-row">
+          <span>🎁 Reward Amount</span>
+          <span id="waitingRewardAmount" class="detail-value reward-highlight">$0.00</span>
+        </div>
+        <div class="reward-detail-row" style="margin-top: 10px;">
+          <span>💸 Withdrawable</span>
+          <span id="waitingWithdrawable" class="detail-value profit-color">$0.00</span>
+        </div>
+      </div>
+
+      <!-- State: Approved -->
+      <div id="rewardApproved" style="display: none;">
+        <div class="reward-header">
+          <h2>🎉 Reward Approved!</h2>
+          <span class="reward-status approved">Approved ✅</span>
+        </div>
+        <p class="reward-approved-text">Your reward has been approved and added to your balance!</p>
+        <div class="reward-detail-row">
+          <span>🎁 Reward Amount</span>
+          <span id="approvedRewardAmount" class="detail-value reward-highlight">$0.00</span>
+        </div>
+      </div>
+
+      <!-- State: Rejected -->
+      <div id="rewardRejected" style="display: none;">
+        <div class="reward-header">
+          <h2>❌ Reward Rejected</h2>
+          <span class="reward-status rejected">Rejected ❌</span>
+        </div>
+        <p class="reward-rejected-text">Your reward claim has been rejected by admin.</p>
+      </div>
+
+    </div>
+
+    <!-- Daily Profit Section -->
+    <div class="profit-card">
+      <div class="profit-header">
+        <h2>⚡ Daily Staking Profit</h2>
+      </div>
+      <div class="profit-info">
+        <div class="profit-detail-row">
+          <span>📊 Your Rate</span>
+          <span id="profitRate" class="detail-value">2.0%</span>
+        </div>
+        <div class="profit-detail-row">
+          <span>💰 Based On</span>
+          <span id="profitBasedOn" class="detail-value">$0.00</span>
+        </div>
+        <div class="profit-detail-row">
+          <span>🎁 Today's Profit</span>
+          <span id="todayProfit" class="detail-value profit-color">$0.00</span>
+        </div>
+        <div class="profit-detail-row">
+          <span>📌 Status</span>
+          <span id="profitStatus" class="detail-value">--</span>
+        </div>
+      </div>
+      <div class="progress-section">
+        <div class="progress-bar-container">
+          <div id="profitProgressBar" class="progress-bar" style="width: 0%"></div>
+        </div>
+        <p id="profitProgressText" class="progress-text">0%</p>
+      </div>
+      <div class="profit-buttons">
+        <button class="check-profit-btn" onclick="checkProfit()">
+          <span>📊</span> Check Profit
+        </button>
+        <button id="claimProfitBtn" class="claim-profit-btn" onclick="claimProfit()" disabled>
+          <span>🎁</span> Claim <span id="claimAmount">$0.00</span>
+        </button>
+      </div>
+    </div>
+
+    <!-- Next Profit Timer -->
+    <div class="timer-card">
+      <h2>⏰ Next Profit</h2>
+      <div class="timer-display">
+        <div class="timer-unit">
+          <span id="timerHours" class="timer-value">00</span>
+          <span class="timer-label">Hours</span>
+        </div>
+        <div class="timer-separator">:</div>
+        <div class="timer-unit">
+          <span id="timerMinutes" class="timer-value">00</span>
+          <span class="timer-label">Mins</span>
+        </div>
+        <div class="timer-separator">:</div>
+        <div class="timer-unit">
+          <span id="timerSeconds" class="timer-value">00</span>
+          <span class="timer-label">Secs</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Transfer Profit Section -->
+    <div class="transfer-card">
+      <h2>💰 Transfer Profit to Balance</h2>
+      <div class="transfer-available">
+        <span>Available:</span>
+        <span id="transferAvailable" class="profit-color">$0.00 USDT</span>
+      </div>
+      <div class="transfer-input-group">
+        <input type="number" id="transferAmount" placeholder="Enter amount (min $30)" min="30" step="0.01">
+      </div>
+      <p id="transferMsg" class="transfer-msg"></p>
+      <button id="transferBtn" class="transfer-btn" onclick="transferProfit()">
+        💰 Transfer to Balance
+      </button>
+    </div>
+
+    <!-- Profit Rate Table -->
+    <div class="rate-card">
+      <h2>📊 Profit Rate Table</h2>
+      <div class="rate-table">
+        <div class="rate-row" id="rate-0-1000"><span class="rate-range">$0 - $1,000</span><span class="rate-value">2.0%</span></div>
+        <div class="rate-row" id="rate-1000-2000"><span class="rate-range">$1,000 - $2,000</span><span class="rate-value">2.1%</span></div>
+        <div class="rate-row" id="rate-2000-5000"><span class="rate-range">$2,000 - $5,000</span><span class="rate-value">2.2%</span></div>
+        <div class="rate-row" id="rate-5000-10000"><span class="rate-range">$5,000 - $10,000</span><span class="rate-value">2.3%</span></div>
+        <div class="rate-row" id="rate-10000-20000"><span class="rate-range">$10,000 - $20,000</span><span class="rate-value">2.4%</span></div>
+        <div class="rate-row" id="rate-20000-50000"><span class="rate-range">$20,000 - $50,000</span><span class="rate-value">2.5%</span></div>
+        <div class="rate-row" id="rate-50000-100000"><span class="rate-range">$50,000 - $100,000</span><span class="rate-value">2.6%</span></div>
+        <div class="rate-row" id="rate-100000-500000"><span class="rate-range">$100,000 - $500,000</span><span class="rate-value">2.7%</span></div>
+        <div class="rate-row" id="rate-500000-1000000"><span class="rate-range">$500,000 - $1M</span><span class="rate-value">2.8%</span></div>
+        <div class="rate-row" id="rate-1000000-5000000"><span class="rate-range">$1M - $5M</span><span class="rate-value">2.9%</span></div>
+        <div class="rate-row" id="rate-5000000"><span class="rate-range">$5M+</span><span class="rate-value">3.0%</span></div>
+      </div>
+    </div>
+
+    <!-- Earning Stats -->
+    <div class="stats-card">
+      <h2>📊 Earning Stats</h2>
+      <div class="stats-list">
+        <div class="stats-row"><span>Today</span><span id="statToday" class="stats-value">$0.00</span></div>
+        <div class="stats-row"><span>This Week</span><span id="statWeek" class="stats-value">$0.00</span></div>
+        <div class="stats-row"><span>This Month</span><span id="statMonth" class="stats-value">$0.00</span></div>
+        <div class="stats-row"><span>All Time</span><span id="statAllTime" class="stats-value">$0.00</span></div>
+      </div>
+    </div>
+
+    <!-- Recent Activity -->
+    <div class="activity-card">
+      <h2>📋 Recent Activity</h2>
+      <div id="activityList" class="activity-list">
+        <p class="no-activity">No activity yet</p>
+      </div>
+      <a href="history.html" class="view-all-link">View All History →</a>
+    </div>
+
+  </div>
+
+  <!-- Bottom Navigation -->
+  <div class="bottom-nav">
+    <a href="dashboard.html" class="tab">
+      <span class="icon">🏠</span>
+      <span class="label">Home</span>
+    </a>
+    <a href="earning.html" class="tab active">
+      <span class="icon">📈</span>
+      <span class="label">Earning</span>
+    </a>
+    <a href="history.html" class="tab">
+      <span class="icon">📋</span>
+      <span class="label">History</span>
+    </a>
+  </div>
+
+  <script src="earning.js"></script>
+</body>
+</html>

@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>History - Investment App</title>
+  <link rel="stylesheet" href="history.css">
+</head>
+<body>
+
+  <!-- Top Header -->
+  <header class="top-header">
+    <div class="profile-section">
+      <div class="profile-pic">
+        <img src="https://ui-avatars.com/api/?name=User&background=3498db&color=fff&size=100" alt="Profile" id="profileImg">
+      </div>
+      <span id="username" class="username-text">User</span>
+    </div>
+    <button class="logout-btn" onclick="logout()">
+      Logout
+    </button>
+  </header>
+
+  <!-- Main Container -->
+  <div class="container">
+
+    <!-- Page Title -->
+    <div class="page-title">
+      <h1>📋 Transaction History</h1>
+      <p>All your transactions in one place</p>
+    </div>
+
+    <!-- Summary Cards -->
+    <div class="summary-row">
+      <div class="summary-card">
+        <div class="summary-icon">💰</div>
+        <div class="summary-info">
+          <p class="summary-label">Total Balance</p>
+          <h3 class="summary-value balance-color">$<span id="totalBalance">0.00</span></h3>
+        </div>
+      </div>
+      <div class="summary-card">
+        <div class="summary-icon">🎁</div>
+        <div class="summary-info">
+          <p class="summary-label">Total Profit</p>
+          <h3 class="summary-value profit-color">$<span id="totalProfit">0.00</span></h3>
+        </div>
+      </div>
+    </div>
+
+    <!-- Filter Buttons -->
+    <div class="filter-section">
+      <h2>🔍 Filter</h2>
+      <div class="filter-buttons">
+        <button class="filter-btn active" onclick="filterHistory('all', this)">
+          📋 All
+        </button>
+        <button class="filter-btn" onclick="filterHistory('profit_claim', this)">
+          🟢 Profit
+        </button>
+        <button class="filter-btn" onclick="filterHistory('transfer', this)">
+          🔵 Transfer
+        </button>
+        <button class="filter-btn" onclick="filterHistory('withdraw', this)">
+          🔴 Withdraw
+        </button>
+        <button class="filter-btn" onclick="filterHistory('reward', this)">
+          🟡 Reward
+        </button>
+      </div>
+    </div>
+
+    <!-- Transaction Count -->
+    <div class="transaction-count">
+      <span id="transactionCount">0</span> transactions found
+    </div>
+
+    <!-- History List -->
+    <div id="historyList" class="history-list">
+      <div class="loading-text">Loading history...</div>
+    </div>
+
+    <!-- No Results -->
+    <div id="noResults" class="no-results" style="display: none;">
+      <div class="no-results-icon">📭</div>
+      <h3>No Transactions Found</h3>
+      <p>You don't have any transactions yet.</p>
+    </div>
+
+  </div>
+
+  <!-- Bottom Navigation -->
+  <div class="bottom-nav">
+    <a href="dashboard.html" class="tab">
+      <span class="icon">🏠</span>
+      <span class="label">Home</span>
+    </a>
+    <a href="earning.html" class="tab">
+      <span class="icon">📈</span>
+      <span class="label">Earning</span>
+    </a>
+    <a href="history.html" class="tab active">
+      <span class="icon">📋</span>
+      <span class="label">History</span>
+    </a>
+  </div>
+
+  <script src="history.js"></script>
+</body>
+</html>

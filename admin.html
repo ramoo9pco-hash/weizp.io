@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin Panel - Investment App</title>
+  <link rel="stylesheet" href="admin.css">
+</head>
+<body>
+
+  <div class="container">
+
+    <!-- Header -->
+    <div class="header">
+      <h1>🔐 Admin Panel</h1>
+      <p>Manage users, balances, wallets & rewards</p>
+    </div>
+
+    <!-- Admin Session Card -->
+    <div class="admin-card admin-key-card">
+      <h2>🔑 Admin Authentication</h2>
+      <div class="input-group">
+        <label>Admin Key</label>
+        <input type="password" id="globalAdminKey" placeholder="Enter admin key">
+      </div>
+      <button class="save-key-btn" onclick="saveAdminKey()">🔑 Save Key</button>
+      <p id="keyMsg" class="message"></p>
+    </div>
+
+    <!-- Tab Navigation -->
+    <div class="tab-nav">
+      <button class="tab-btn active" onclick="switchTab('users', this)">👥 Users</button>
+      <button class="tab-btn" onclick="switchTab('balance', this)">💰 Balance</button>
+      <button class="tab-btn" onclick="switchTab('wallets', this)">📋 Wallets</button>
+      <button class="tab-btn" onclick="switchTab('rewards', this)">🎁 Rewards</button>
+      <button class="tab-btn" onclick="switchTab('withdrawals', this)">💸 Withdraw</button>
+      <button class="tab-btn" onclick="switchTab('approvals', this)">✅ Approve</button>
+    </div>
+
+    <!-- ================= TAB: USERS ================= -->
+    <div id="usersTab" class="tab-content active">
+      <div class="admin-card">
+        <h2>👥 All Users</h2>
+        <button class="view-btn" onclick="viewUsers()">🔄 Load Users</button>
+        <div id="usersList" class="users-list"></div>
+      </div>
+    </div>
+
+    <!-- ================= TAB: BALANCE ================= -->
+    <div id="balanceTab" class="tab-content">
+      <div class="admin-card">
+        <h2>💰 Update User Balance</h2>
+        <div class="input-group">
+          <label>Username</label>
+          <input type="text" id="balanceUsername" placeholder="Enter username">
+        </div>
+        <div class="input-group">
+          <label>New Balance (USDT)</label>
+          <input type="number" id="balanceAmount" placeholder="0.00" step="0.01">
+        </div>
+        <p id="balanceMsg" class="message"></p>
+        <button class="update-btn" onclick="updateBalance()">💰 Update Balance</button>
+      </div>
+    </div>
+
+    <!-- ================= TAB: WALLETS ================= -->
+    <div id="walletsTab" class="tab-content">
+      <div class="admin-card">
+        <h2>📋 Add ERC20 Wallets</h2>
+        <p class="card-subtitle">Add wallet addresses to the pool (one per line)</p>
+        <div class="input-group">
+          <label>ERC20 Wallet Addresses</label>
+          <textarea id="walletAddresses" placeholder="0x1234567890abcdef...&#10;0xabcdef1234567890..." rows="6"></textarea>
+        </div>
+        <p id="addWalletMsg" class="message"></p>
+        <button class="create-reward-btn" onclick="addWallets()">📤 Add Wallets to Pool</button>
+      </div>
+
+      <div class="admin-card">
+        <h2>📊 Wallet Stats</h2>
+        <div id="walletStats" class="wallet-stats">
+          <div class="stat-box"><span class="stat-number" id="totalWallets">0</span><span class="stat-label">Total</span></div>
+          <div class="stat-box"><span class="stat-number assigned" id="assignedWallets">0</span><span class="stat-label">Assigned</span></div>
+          <div class="stat-box"><span class="stat-number available" id="availableWallets">0</span><span class="stat-label">Available</span></div>
+        </div>
+      </div>
+
+      <div class="admin-card">
+        <h2>📋 All Wallets</h2>
+        <button class="view-btn" onclick="viewWallets()">🔄 Load Wallets</button>
+        <div id="walletsList" class="wallets-list"></div>
+      </div>
+    </div>
+
+    <!-- ================= TAB: REWARDS ================= -->
+    <div id="rewardsTab" class="tab-content">
+      <div class="admin-card">
+        <h2>🎁 Create Reward</h2>
+        <div class="input-group">
+          <label>Username</label>
+          <input type="text" id="rewardUsername" placeholder="Enter username">
+        </div>
+        <div class="input-group">
+          <label>Notification Message</label>
+          <textarea id="rewardMessage" placeholder="e.g. Deposit $1000 and get $50 bonus!" rows="3"></textarea>
+        </div>
+        <div class="input-group">
+          <label>Standard Amount (Target to reach)</label>
+          <input type="number" id="standardAmount" placeholder="e.g. 1000.00" step="0.01">
+        </div>
+        <div class="input-group">
+          <label>Reward Amount (USDT)</label>
+          <input type="number" id="rewardAmount" placeholder="e.g. 50.00" step="0.01">
+        </div>
+        <div class="input-group">
+          <label>Requirement Amount (USDT)</label>
+          <input type="number" id="requirementAmount" placeholder="e.g. 1000.00" step="0.01">
+        </div>
+        <div class="input-group">
+          <label>Time to Complete (Hours)</label>
+          <input type="number" id="rewardTimeLimit" placeholder="e.g. 120 (5 days)" step="1">
+        </div>
+        <p id="createRewardMsg" class="message"></p>
+        <button class="create-reward-btn" onclick="createReward()">🎁 Create Reward</button>
+      </div>
+
+      <div class="admin-card">
+        <h2>📋 Active Rewards</h2>
+        <button class="view-btn" onclick="viewRewards()">🔄 Load Rewards</button>
+        <div id="rewardsList" class="rewards-list"></div>
+      </div>
+    </div>
+
+    <!-- ================= TAB: WITHDRAWALS ================= -->
+    <div id="withdrawalsTab" class="tab-content">
+      <div class="admin-card">
+        <h2>💸 Withdraw Requests</h2>
+        <button class="view-btn" onclick="viewWithdrawals()">🔄 Load Requests</button>
+        <div id="withdrawalsList" class="withdrawals-list"></div>
+      </div>
+    </div>
+
+    <!-- ================= TAB: APPROVALS ================= -->
+    <div id="approvalsTab" class="tab-content">
+      <div class="admin-card">
+        <h2>✅ Reward Approval Requests</h2>
+        <button class="view-btn" onclick="viewApprovals()">🔄 Load Requests</button>
+        <div id="approvalsList" class="approvals-list"></div>
+      </div>
+    </div>
+
+    <!-- ================= EDIT REWARD MODAL ================= -->
+    <div id="editModal" class="modal" style="display: none;">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h2>✏️ Edit Reward</h2>
+          <button class="modal-close" onclick="closeEditModal()">✕</button>
+        </div>
+        <div class="input-group">
+          <label>Notification Message</label>
+          <textarea id="editRewardMessage" rows="3"></textarea>
+        </div>
+        <div class="input-group">
+          <label>Standard Amount</label>
+          <input type="number" id="editStandardAmount" step="0.01">
+        </div>
+        <div class="input-group">
+          <label>Reward Amount (USDT)</label>
+          <input type="number" id="editRewardAmount" step="0.01">
+        </div>
+        <div class="input-group">
+          <label>Completed Amount (Admin sets progress)</label>
+          <input type="number" id="editCompletedAmount" step="0.01" placeholder="0.00">
+        </div>
+        <div class="input-group">
+          <label>Requirement Amount</label>
+          <input type="number" id="editRequirementAmount" step="0.01">
+        </div>
+        <div class="input-group">
+          <label>Time to Complete (Hours)</label>
+          <input type="number" id="editTimeLimit" step="1">
+        </div>
+        <p id="editRewardMsg" class="message"></p>
+        <button class="update-btn" onclick="saveEditReward()">💾 Save Changes</button>
+      </div>
+    </div>
+
+  </div>
+
+  <script src="admin.js"></script>
+</body>
+</html>

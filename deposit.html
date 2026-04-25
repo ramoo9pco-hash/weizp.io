@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Deposit - Investment App</title>
+  <link rel="stylesheet" href="deposit.css">
+</head>
+<body>
+
+  <!-- Top Header -->
+  <header class="top-header">
+    <div class="profile-section">
+      <div class="profile-pic">
+        <img src="https://ui-avatars.com/api/?name=User&background=3498db&color=fff&size=100" alt="Profile" id="profileImg">
+      </div>
+      <span id="username" class="username-text">User</span>
+    </div>
+    <button class="back-btn" onclick="goBack()">
+      ← Back
+    </button>
+  </header>
+
+  <!-- Main Container -->
+  <div class="container">
+
+    <!-- Page Title -->
+    <div class="page-title">
+      <h1>💰 Deposit</h1>
+      <p>Add funds to your account</p>
+    </div>
+
+    <!-- Balance Card -->
+    <div class="balance-card">
+      <p class="balance-label">Current Balance</p>
+      <h2 class="balance-amount">$<span id="userBalance">0.00</span></h2>
+      <p class="balance-sub">USDT</p>
+    </div>
+
+    <!-- Warning Card -->
+    <div class="warning-card">
+      <div class="warning-icon">⚠️</div>
+      <div class="warning-content">
+        <h3>Important Notice</h3>
+        <p>Only send <strong>USDT</strong> via <strong>ERC20</strong> network to this address. Sending any other coin or using a different network will result in <strong>permanent loss</strong> of your funds.</p>
+      </div>
+    </div>
+
+    <!-- Network Selection -->
+    <div class="network-card">
+      <h2>🌐 Network</h2>
+      <div class="network-options">
+        <div class="network-option active">
+          <div class="network-dot"></div>
+          <span>ERC20</span>
+          <span class="network-badge">Selected</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Wallet Address Card -->
+    <div class="wallet-card">
+      <h2>📋 Your Deposit Address</h2>
+      <p class="wallet-subtitle">Send USDT (ERC20) to the address below</p>
+
+      <div id="walletLoading" class="wallet-loading">
+        <p>Loading wallet address...</p>
+      </div>
+
+      <div id="walletAddressSection" class="wallet-address-section" style="display: none;">
+        <div class="wallet-address-box">
+          <p id="walletAddress" class="wallet-address">0x0000...0000</p>
+          <button class="copy-btn" onclick="copyWalletAddress()">
+            <span id="copyIcon">📋</span>
+            <span id="copyText">Copy</span>
+          </button>
+        </div>
+        <p id="copyMsg" class="copy-msg"></p>
+      </div>
+
+      <div id="walletError" class="wallet-error" style="display: none;">
+        <p>❌ No wallet assigned. Please contact support.</p>
+      </div>
+    </div>
+
+    <!-- Deposit Instructions -->
+    <div class="instructions-card">
+      <h2>📝 How To Deposit</h2>
+      <div class="instruction-steps">
+        <div class="instruction-step">
+          <div class="step-number">1</div>
+          <div class="step-content">
+            <h3>Copy Address</h3>
+            <p>Copy the ERC20 wallet address above</p>
+          </div>
+        </div>
+        <div class="instruction-step">
+          <div class="step-number">2</div>
+          <div class="step-content">
+            <h3>Open Your Wallet</h3>
+            <p>Open your crypto wallet (MetaMask, Trust Wallet, etc.)</p>
+          </div>
+        </div>
+        <div class="instruction-step">
+          <div class="step-number">3</div>
+          <div class="step-content">
+            <h3>Send USDT (ERC20)</h3>
+            <p>Send USDT using <strong>ERC20 network only</strong></p>
+          </div>
+        </div>
+        <div class="instruction-step">
+          <div class="step-number">4</div>
+          <div class="step-content">
+            <h3>Wait For Confirmation</h3>
+            <p>Your balance will be updated after confirmation</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Important Notes -->
+    <div class="notes-card">
+      <h2>📌 Important Notes</h2>
+      <div class="notes-list">
+        <div class="note-item warning">
+          <span>⚠️</span>
+          <p>Only send <strong>USDT</strong> to this address</p>
+        </div>
+        <div class="note-item warning">
+          <span>⚠️</span>
+          <p>Only use <strong>ERC20</strong> network</p>
+        </div>
+        <div class="note-item danger">
+          <span>🚫</span>
+          <p>Do <strong>NOT</strong> send other coins (BTC, ETH, etc.)</p>
+        </div>
+        <div class="note-item danger">
+          <span>🚫</span>
+          <p>Do <strong>NOT</strong> use TRC20 or BEP20 network</p>
+        </div>
+        <div class="note-item info">
+          <span>ℹ️</span>
+          <p>Minimum confirmation time: 5-30 minutes</p>
+        </div>
+        <div class="note-item info">
+          <span>ℹ️</span>
+          <p>Contact support if deposit not received within 1 hour</p>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- Bottom Navigation -->
+  <div class="bottom-nav">
+    <a href="dashboard.html" class="tab">
+      <span class="icon">🏠</span>
+      <span class="label">Home</span>
+    </a>
+    <a href="earning.html" class="tab">
+      <span class="icon">📈</span>
+      <span class="label">Earning</span>
+    </a>
+    <a href="history.html" class="tab">
+      <span class="icon">📋</span>
+      <span class="label">History</span>
+    </a>
+  </div>
+
+  <script src="deposit.js"></script>
+</body>
+</html>

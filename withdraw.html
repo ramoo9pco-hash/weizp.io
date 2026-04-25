@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Withdraw - Investment App</title>
+  <link rel="stylesheet" href="withdraw.css">
+</head>
+<body>
+
+  <!-- Top Header -->
+  <header class="top-header">
+    <div class="profile-section">
+      <div class="profile-pic">
+        <img src="https://ui-avatars.com/api/?name=User&background=3498db&color=fff&size=100" alt="Profile" id="profileImg">
+      </div>
+      <span id="username" class="username-text">User</span>
+    </div>
+    <button class="back-btn" onclick="goBack()">
+      ← Back
+    </button>
+  </header>
+
+  <!-- Main Container -->
+  <div class="container">
+
+    <!-- Page Title -->
+    <div class="page-title">
+      <h1>💸 Withdraw</h1>
+      <p>Withdraw funds to your wallet</p>
+    </div>
+
+    <!-- Balance Card -->
+    <div class="balance-card">
+      <p class="balance-label">Available Balance</p>
+      <h2 class="balance-amount">$<span id="userBalance">0.00</span></h2>
+      <p class="balance-sub">USDT</p>
+    </div>
+
+    <!-- Warning Card -->
+    <div class="warning-card">
+      <div class="warning-icon">⚠️</div>
+      <div class="warning-content">
+        <h3>Important Notice</h3>
+        <p>Only enter <strong>ERC20</strong> wallet address. Using a different network address will result in <strong>permanent loss</strong> of your funds. We are not responsible for wrong addresses.</p>
+      </div>
+    </div>
+
+    <!-- Network Selection -->
+    <div class="network-card">
+      <h2>🌐 Network</h2>
+      <div class="network-options">
+        <div class="network-option active">
+          <div class="network-dot"></div>
+          <span>ERC20</span>
+          <span class="network-badge">Selected</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Withdraw Form -->
+    <div class="withdraw-card">
+      <h2>💸 Withdraw Details</h2>
+
+      <!-- Wallet Address Input -->
+      <div class="input-group">
+        <label>Your ERC20 Wallet Address</label>
+        <input
+          type="text"
+          id="walletAddress"
+          placeholder="Enter your ERC20 wallet address (0x...)"
+        >
+        <p class="input-hint">⚠️ Only ERC20 address. Double check before submitting.</p>
+      </div>
+
+      <!-- Amount Input -->
+      <div class="input-group">
+        <label>Withdraw Amount (USDT)</label>
+        <div class="amount-input-wrapper">
+          <input
+            type="number"
+            id="withdrawAmount"
+            placeholder="Enter amount (min $30)"
+            min="30"
+            step="0.01"
+            oninput="calculateWithdraw()"
+          >
+          <button class="max-btn" onclick="setMaxAmount()">MAX</button>
+        </div>
+        <p class="input-hint">Minimum withdrawal: $30.00</p>
+      </div>
+
+      <!-- Withdraw Summary -->
+      <div class="withdraw-summary">
+        <div class="summary-row">
+          <span>Withdraw Amount</span>
+          <span id="summaryAmount" class="summary-value">$0.00</span>
+        </div>
+        <div class="summary-row">
+          <span>Network Fee</span>
+          <span class="summary-value fee-free">FREE</span>
+        </div>
+        <div class="summary-divider"></div>
+        <div class="summary-row total">
+          <span>You Will Receive</span>
+          <span id="summaryReceive" class="summary-value receive-amount">$0.00</span>
+        </div>
+      </div>
+
+      <!-- Error/Success Message -->
+      <p id="withdrawMsg" class="withdraw-msg"></p>
+
+      <!-- Submit Button -->
+      <button class="withdraw-btn" onclick="submitWithdraw()">
+        💸 Submit Withdraw Request
+      </button>
+    </div>
+
+    <!-- Withdraw History -->
+    <div class="history-card">
+      <h2>📋 Recent Withdrawals</h2>
+      <div id="withdrawHistory" class="withdraw-history">
+        <p class="no-history">No withdrawals yet</p>
+      </div>
+    </div>
+
+    <!-- Important Notes -->
+    <div class="notes-card">
+      <h2>📌 Important Notes</h2>
+      <div class="notes-list">
+        <div class="note-item warning">
+          <span>⚠️</span>
+          <p>Only enter <strong>ERC20</strong> wallet address</p>
+        </div>
+        <div class="note-item danger">
+          <span>🚫</span>
+          <p>Do <strong>NOT</strong> enter TRC20 or BEP20 address</p>
+        </div>
+        <div class="note-item warning">
+          <span>⚠️</span>
+          <p>Double check your wallet address before submitting</p>
+        </div>
+        <div class="note-item info">
+          <span>ℹ️</span>
+          <p>Minimum withdrawal amount: <strong>$30.00</strong></p>
+        </div>
+        <div class="note-item info">
+          <span>ℹ️</span>
+          <p>No withdrawal fee</p>
+        </div>
+        <div class="note-item info">
+          <span>ℹ️</span>
+          <p>Processing time: 1-24 hours after approval</p>
+        </div>
+        <div class="note-item danger">
+          <span>🚫</span>
+          <p>Wrong address = <strong>permanent loss</strong>. We are not responsible.</p>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- Bottom Navigation -->
+  <div class="bottom-nav">
+    <a href="dashboard.html" class="tab">
+      <span class="icon">🏠</span>
+      <span class="label">Home</span>
+    </a>
+    <a href="earning.html" class="tab">
+      <span class="icon">📈</span>
+      <span class="label">Earning</span>
+    </a>
+    <a href="history.html" class="tab">
+      <span class="icon">📋</span>
+      <span class="label">History</span>
+    </a>
+  </div>
+
+  <script src="withdraw.js"></script>
+</body>
+</html>

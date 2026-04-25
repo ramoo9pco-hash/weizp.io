@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Login - Investment App</title>
+  <link rel="stylesheet" href="login.css">
+</head>
+<body>
+  <div class="container">
+    <div class="login-card">
+
+      <!-- Logo/Header -->
+      <div class="header">
+        <h1>💎 Welcome Back</h1>
+        <p>Login to continue your investment journey</p>
+      </div>
+
+      <!-- Login Form -->
+      <form id="loginForm">
+
+        <div class="input-group">
+          <label>Username</label>
+          <input
+            type="text"
+            id="username"
+            placeholder="Enter your username"
+            required
+          >
+        </div>
+
+        <div class="input-group">
+          <label>Password</label>
+          <input
+            type="password"
+            id="password"
+            placeholder="Enter your password"
+            required
+          >
+        </div>
+
+        <!-- Error Message -->
+        <p id="errorMsg" class="error-msg"></p>
+
+        <!-- Login Button -->
+        <button type="submit" class="login-btn">
+          Login Now
+        </button>
+
+      </form>
+
+      <!-- Register Link -->
+      <div class="register-link">
+        <p>Don't have an account?
+          <a href="register.html">Register Here</a>
+        </p>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ================= TELEGRAM CUSTOMER SERVICE BUTTON ================= -->
+  <a href="https://t.me/StakeUSDThelp" target="_blank" id="tg-btn">
+    <img src="https://upload.wikimedia.org/wikipedia/commons/8/82/Telegram_logo.svg" alt="Chat on Telegram"/>
+    <span class="tg-tooltip">💬 Chat with us!</span>
+  </a>
+  <!-- ================= END TELEGRAM BUTTON ================= -->
+
+  <script src="login.js"></script>
+</body>
+</html>

@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dashboard - Investment App</title>
+  <link rel="stylesheet" href="dashboard.css">
+</head>
+<body>
+
+  <!-- Top Header -->
+  <header class="top-header">
+    <div class="profile-section">
+      <div class="profile-pic">
+        <img src="https://ui-avatars.com/api/?name=User&background=3498db&color=fff&size=100" alt="Profile" id="profileImg">
+      </div>
+      <span id="username" class="username-text">User</span>
+    </div>
+    <button class="logout-btn" onclick="logout()">
+      Logout
+    </button>
+  </header>
+
+  <!-- Main Container -->
+  <div class="container">
+
+    <!-- Balance Card -->
+    <div class="balance-card">
+      <p class="balance-label">Your Balance</p>
+      <h1 class="balance-amount">$<span id="userBalance">0.00</span></h1>
+      <p class="balance-subtext">USDT</p>
+      
+      <!-- Action Buttons -->
+      <div class="action-buttons">
+        <button class="deposit-btn" onclick="goToDeposit()">
+          <span class="btn-icon">💰</span>
+          Deposit
+        </button>
+        <button class="withdraw-btn" onclick="goToWithdraw()">
+          <span class="btn-icon">💸</span>
+          Withdraw
+        </button>
+      </div>
+    </div>
+
+    <!-- Crypto Prices Section -->
+    <div class="crypto-section">
+      <h2 class="section-title">📊 Market Prices</h2>
+      
+      <div class="crypto-list" id="cryptoList">
+        <!-- Crypto cards will be dynamically loaded here -->
+      </div>
+    </div>
+
+  </div>
+
+  <!-- Bottom Navigation -->
+  <div class="bottom-nav">
+    <a href="dashboard.html" class="tab active">
+      <span class="icon">🏠</span>
+      <span class="label">Dashboard</span>
+    </a>
+    <a href="earning.html" class="tab">
+      <span class="icon">📈</span>
+      <span class="label">Earning</span>
+    </a>
+    <a href="history.html" class="tab">
+      <span class="icon">📋</span>
+      <span class="label">History</span>
+    </a>
+  </div>
+
+  <script src="dashboard.js"></script>
+</body>
+</html>

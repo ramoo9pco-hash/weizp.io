@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin Login - Investment App</title>
+  <link rel="stylesheet" href="admin-login.css">
+</head>
+<body>
+
+  <div class="container">
+    <div class="login-card">
+
+      <!-- Logo/Header -->
+      <div class="header">
+        <div class="admin-icon">🔐</div>
+        <h1>Admin Login</h1>
+        <p>Secure access to admin panel</p>
+      </div>
+
+      <!-- Login Form -->
+      <form id="adminLoginForm">
+
+        <div class="input-group">
+          <label>Username</label>
+          <div class="input-wrapper">
+            <span class="input-icon">👤</span>
+            <input
+              type="text"
+              id="username"
+              placeholder="Enter admin username"
+              required
+            >
+          </div>
+        </div>
+
+        <div class="input-group">
+          <label>Password</label>
+          <div class="input-wrapper">
+            <span class="input-icon">🔑</span>
+            <input
+              type="password"
+              id="password"
+              placeholder="Enter admin password"
+              required
+            >
+            <button type="button" class="toggle-password" onclick="togglePassword()">
+              <span id="eyeIcon">👁️</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- Error Message -->
+        <p id="errorMsg" class="error-msg"></p>
+
+        <!-- Login Button -->
+        <button type="submit" class="login-btn">
+          🔐 Login to Admin Panel
+        </button>
+
+      </form>
+
+      <!-- Security Info -->
+      <div class="security-info">
+        <div class="security-item">
+          <span>🔒</span>
+          <p>Encrypted connection</p>
+        </div>
+        <div class="security-item">
+          <span>⏰</span>
+          <p>Session expires in 8 hours</p>
+        </div>
+        <div class="security-item">
+          <span>🛡️</span>
+          <p>Max 5 login attempts per 15 min</p>
+        </div>
+      </div>
+
+      <!-- Back Link -->
+      <div class="back-link">
+        <a href="login.html">← Back to User Login</a>
+      </div>
+
+    </div>
+  </div>
+
+  <script src="admin-login.js"></script>
+</body>
+</html>
